@@ -12,10 +12,10 @@ enum WildPokemonStates {
 
 class WildPokemon: public GameObject{
     protected:
-        double attack = 5;
-        double health = 2;
-        bool variant = false;
-        bool in_combat = false;
+        double attack;
+        double health;
+        bool variant;
+        bool in_combat;
         string name;
         Trainer* current_trainer;
 

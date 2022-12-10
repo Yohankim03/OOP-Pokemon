@@ -78,7 +78,7 @@ void DoAdvanceCommand(Model& model, View& view){
 void DoRunCommand(Model& model, View& view){
     cout<<"Advancing to next event\n";
     for (int i=0;i<5;i++){
-        if(!(model.Update()))
+        if((model.Update()))
             break;
     }
             

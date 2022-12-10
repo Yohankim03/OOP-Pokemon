@@ -311,7 +311,6 @@ void Trainer::ShowStatus(){
 
 bool Trainer::Update(){
     bool locationResult;
-    cout<<"wild pokemone state: "<< has_pokemon_following<< endl;
 
     if (health <= 0){
         if (state==FAINTED)
