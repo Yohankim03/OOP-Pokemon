@@ -10,6 +10,7 @@
 #include "Model.h"
 #include "GameCommand.h"
 #include "View.h"
+#include "WildPokemon.h"
 using namespace std;
 
 

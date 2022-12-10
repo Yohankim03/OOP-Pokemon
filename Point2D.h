@@ -25,4 +25,6 @@ Point2D operator+(Point2D, Vector2D);
 
 Vector2D operator-(Point2D, Point2D);
 
+bool operator==(Point2D, Point2D);
+
 #endif

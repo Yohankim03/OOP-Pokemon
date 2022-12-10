@@ -4,10 +4,11 @@ using namespace std;
 
 Model::Model(){
     time = -1;  //So when u run show status first the time is 0
-    num_objects = 6;
+    num_objects = 8;
     num_centers = 2;
     num_trainers = 2;
     num_gym = 2;
+    num_wildpokemon = 2;
 
     PokemonCenter* Center1 = new PokemonCenter(1,1,100,Point2D(1,20));  //100
     PokemonCenter* Center2 = new PokemonCenter(2,2,200,Point2D(10,20)); //200
@@ -29,6 +30,15 @@ Model::Model(){
     object_ptrs[5] = Gym2;
     gym_ptrs[0] = Gym1;
     gym_ptrs[1] = Gym2;
+
+    WildPokemon* pokemon1 = new WildPokemon("Charmander", 2, 5, false, 1, Point2D(10,12));
+    WildPokemon* pokemon2 = new WildPokemon("Bulbasaur", 2, 5, false, 2, Point2D(15,5));
+    object_ptrs[6] = pokemon1;
+    object_ptrs[7] = pokemon2;
+    pokemon_ptrs[0] = pokemon1;
+    pokemon_ptrs[1] = pokemon2;
+
+
 
     cout<<"Model defualt constructed\n";
 }
@@ -70,6 +80,23 @@ void Model::Quit(){
 
 bool Model::Update(){
     time++;
+
+    for (int i=0;i<num_wildpokemon;i++){
+        for (int j=0;j<num_trainers;j++){
+            if (pokemon_ptrs[i]->GetState() != IN_TRAINER && (pokemon_ptrs[i]->GetLocation() == trainer_ptrs[j]->GetLocation())){
+                if (!(trainer_ptrs[i]->HasFainted())){
+                    pokemon_ptrs[i]->changeState(IN_TRAINER);
+                    pokemon_ptrs[i]->follow(trainer_ptrs[j]);
+                    trainer_ptrs[j]->changePokemon(true);
+                    return true;
+                }
+                else{
+                    trainer_ptrs[j]->changePokemon(false);
+                }
+            }
+        }
+    }
+
     bool updateTrue = false;
     for (int i=0;i<num_objects;i++){
         bool check = (*object_ptrs[i]).Update();

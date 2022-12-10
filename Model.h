@@ -1,10 +1,12 @@
 #ifndef MODEL_H
 #define MODEL_H
+
 #include "GameObject.h"
 #include "Trainer.h"
 #include "PokemonCenter.h"
 #include "PokemonGym.h"
 #include "View.h"
+#include "WildPokemon.h"
 
 class Model{
     private:
@@ -16,7 +18,9 @@ class Model{
         PokemonCenter* center_ptrs[10];
         int num_centers;
         PokemonGym* gym_ptrs[10];
-        int num_gym;   
+        int num_gym;
+        WildPokemon* pokemon_ptrs[10];
+        int num_wildpokemon;
 
     public:
         Model();

@@ -21,6 +21,7 @@ class Trainer: public GameObject{
         double speed;
         bool is_at_center;
         bool is_in_gym;
+        bool has_pokemon_following;
         unsigned int health;
         unsigned int experience;
         double PokeDollars;
@@ -49,6 +50,9 @@ class Trainer: public GameObject{
         void ShowStatus();
         bool Update();
         string GetName();
+        void changePokemon(bool);
+        bool HasPokemon();
+        void TakeDamage();
 
     protected:
         bool UpdateLocation();

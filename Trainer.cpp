@@ -19,6 +19,8 @@ Trainer::Trainer()
     current_center = NULL;
     current_gym = NULL;
     name = "Ash";
+    has_pokemon_following = false;
+
 }
 
 Trainer::Trainer(char in_code)
@@ -37,6 +39,8 @@ Trainer::Trainer(char in_code)
     current_center = NULL;
     current_gym = NULL;
     name = "Ash";
+    has_pokemon_following = false;
+
 }
 
 Trainer::Trainer(string in_name, int in_id, char in_code, unsigned int in_speed, Point2D in_loc)
@@ -54,6 +58,7 @@ Trainer::Trainer(string in_name, int in_id, char in_code, unsigned int in_speed,
     potions_to_buy = 0;
     current_center = NULL;
     current_gym = NULL;
+    has_pokemon_following = false;
 }
 
 Trainer::~Trainer(){
@@ -187,7 +192,7 @@ void Trainer::Stop(){
 }
 
 bool Trainer::HasFainted(){
-    if (health==0)
+    if (health <= 0)
         return true;
     else 
         return false;
@@ -204,9 +209,40 @@ string Trainer::GetName(){
     return name;
 }
 
+void Trainer::changePokemon(bool yesorno){
+    has_pokemon_following = yesorno;
+}
+
+bool Trainer::HasPokemon(){
+    if (has_pokemon_following)
+        return true;
+    else 
+        return false;
+}
+
+void Trainer::TakeDamage(){
+    if (HasPokemon()){
+        int percent = rand()% 101;
+        if (percent <= 25)
+            health -= 2;
+        else
+            health--;
+    }
+    else 
+        health--;
+}
+
 void Trainer::ShowStatus(){
     cout<<GetName()<<" status:\n";
     GameObject::ShowStatus();
+
+    if (HasPokemon()){
+        cout<<"Has a wild pokemon following them\n";
+        cout<<"Health: "<<health<<endl;
+        cout<<"PokeDollars: "<<PokeDollars<<endl;
+        cout<<"Experience: "<<experience<<endl;
+    }
+
     switch (state){
         case STOPPED:
             cout<<"Stopped\n";
@@ -263,28 +299,39 @@ void Trainer::ShowStatus(){
             cout<<"PokeDollars: "<<PokeDollars<<endl;
             cout<<"Experience: "<<experience<<endl;
             break;
+
+        case FAINTED:
+            cout<<"Fainted\n";
+            cout<<"Health: "<<health<<endl;
+            cout<<"PokeDollars: "<<PokeDollars<<endl;
+            cout<<"Experience: "<<experience<<endl;
+            break;
     }
 }
 
 bool Trainer::Update(){
     bool locationResult;
+    cout<<"wild pokemone state: "<< has_pokemon_following<< endl;
 
-    if (health==0){
+    if (health <= 0){
         if (state==FAINTED)
             return false;
         else{
             state=FAINTED;
             cout<<GetName()<<" is out of health and can't move.\n";
+            changePokemon(false);
             return true;
         }
-
     }
+
     switch (state){
         case STOPPED:
             return false;
             break;
 
         case MOVING:
+            TakeDamage();
+            PokeDollars+=GetRandomAmountOfPokeDollars();    // get random # of pokedollars for battling random pokemon
             locationResult = UpdateLocation();
             if (locationResult){
                 state = STOPPED;
@@ -295,6 +342,8 @@ bool Trainer::Update(){
             break;
 
         case MOVING_TO_GYM:
+            TakeDamage();
+            PokeDollars+=GetRandomAmountOfPokeDollars();    // get random # of pokedollars for battling random pokemon
             locationResult = UpdateLocation();
             if (locationResult){
                 state = IN_GYM;
@@ -306,6 +355,8 @@ bool Trainer::Update(){
             break;
 
         case MOVING_TO_CENTER:
+            TakeDamage();
+            PokeDollars+=GetRandomAmountOfPokeDollars();    // get random # of pokedollars for battling random pokemon
             locationResult = UpdateLocation();
             if (locationResult){
                 state = AT_CENTER;
@@ -367,11 +418,8 @@ bool Trainer::UpdateLocation(){
     }
     else{
         cout<<display_code<<id_num<<": Step...\n";
-        // location=location+delta;
         location.x = location.x + delta.x;
         location.y = location.y + delta.y;
-        health--;
-        PokeDollars+=GetRandomAmountOfPokeDollars();    // get random # of pokedollars for battling random pokemon
         return false;
     }
 }
