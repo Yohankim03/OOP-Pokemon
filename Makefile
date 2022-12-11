@@ -39,8 +39,11 @@ GameCommand.o: GameCommand.cpp GameCommand.h Model.h GameObject.h Trainer.h Poke
 
 WildPokemon.o: WildPokemon.cpp WildPokemon.h GameObject.h Trainer.h
 	$(CC) -c WildPokemon.cpp -o WildPokemon.o
+
+# Input_Handling.o: Input_Handling.h
+# 	$(CC) -c Input_Handling.o
 	
-main.o: main.cpp Building.h Point2D.h Vector2D.h GameCommand.h PokemonCenter.h Model.h Trainer.h PokemonGym.h GameObject.h View.h WildPokemon.h
+main.o: main.cpp Building.h Point2D.h Vector2D.h GameCommand.h PokemonCenter.h Model.h Trainer.h PokemonGym.h GameObject.h View.h WildPokemon.h Input_Handling.h
 	$(CC) -c main.cpp -o main.o
 
 clean: 

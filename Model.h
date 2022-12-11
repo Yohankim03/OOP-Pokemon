@@ -42,9 +42,13 @@ class Model{
         PokemonCenter* GetPokemonCenterPtr(int);
         PokemonGym* GetPokemonGymPtr(int);
         bool Update();
+        bool checkXandY(int, int);
+        bool checkID(char, int);
+        bool checkLetterID(char);
         void Display(View&);
         void ShowStatus();
         void Quit();
+        void NewCommand(char, int, int, int);
 };
 
 #endif

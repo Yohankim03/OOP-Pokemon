@@ -7,6 +7,7 @@ GameObject::GameObject(char in_code){
     id_num = 1;
     state = 0;
     cout<<"GameObject constructed\n";
+    isTrainer = false;
 }
 
 GameObject::GameObject(Point2D in_loc, int in_id, char in_code){
@@ -15,6 +16,7 @@ GameObject::GameObject(Point2D in_loc, int in_id, char in_code){
     location = in_loc;
     state = 0;
     cout<<"GameObject constructed\n";
+    isTrainer = false;
 }
 
 GameObject::~GameObject(){
@@ -44,4 +46,8 @@ bool GameObject::Update(){
 void GameObject::DrawSelf(char* ptr){
     *ptr = display_code;
     *(ptr+1) = '0'+id_num;
+}
+
+void GameObject::trainerChange(){
+    
 }

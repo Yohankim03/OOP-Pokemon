@@ -81,8 +81,6 @@ void DoRunCommand(Model& model, View& view){
         if((model.Update()))
             break;
     }
-            
     model.ShowStatus();
     model.Display(view);
 }
-

@@ -10,6 +10,10 @@ WildPokemon::WildPokemon(string name, double atck, double hp, bool var, int id, 
     cout<<"WildPokemon constructed\n";
 }
 
+WildPokemon::~WildPokemon(){
+    cout<<"WildPokemon deconstructed\n";
+}
+
 void WildPokemon::follow(Trainer* t){
     current_trainer = t;
 }
@@ -39,7 +43,7 @@ bool WildPokemon::Update(){
     if (state == IN_ENVIRONMENT)
         return false;
     
-    if (health <=0){
+    if (health ==0){
         state = DEAD;
         return true;
     }

@@ -192,8 +192,9 @@ void Trainer::Stop(){
 }
 
 bool Trainer::HasFainted(){
-    if (health <= 0)
+    if (health == 0){
         return true;
+    }
     else 
         return false;
 }
@@ -238,9 +239,6 @@ void Trainer::ShowStatus(){
 
     if (HasPokemon()){
         cout<<"Has a wild pokemon following them\n";
-        cout<<"Health: "<<health<<endl;
-        cout<<"PokeDollars: "<<PokeDollars<<endl;
-        cout<<"Experience: "<<experience<<endl;
     }
 
     switch (state){
@@ -312,7 +310,7 @@ void Trainer::ShowStatus(){
 bool Trainer::Update(){
     bool locationResult;
 
-    if (health <= 0){
+    if (health == 0){
         if (state==FAINTED)
             return false;
         else{

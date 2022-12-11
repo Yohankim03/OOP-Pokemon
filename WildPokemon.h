@@ -21,6 +21,7 @@ class WildPokemon: public GameObject{
 
     public:
         WildPokemon(string, double, double, bool, int, Point2D);
+        ~WildPokemon();
         void follow(Trainer*);
         bool get_variant();
         double get_attack();

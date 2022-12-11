@@ -12,6 +12,7 @@ class GameObject{
         int id_num;
         char display_code;
         char state;
+        bool isTrainer;
 
     public:
         GameObject(char);
@@ -23,6 +24,7 @@ class GameObject{
         virtual void ShowStatus();
         virtual bool Update();
         void DrawSelf(char*);
+        void trainerChange();
 };
 
 #endif
