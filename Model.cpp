@@ -220,7 +220,7 @@ bool Model::checkID(char letterID, int id){
         case ('c'):
             for (PokemonCenter* i: center_ptrs){
                 if (i->GetId() == id){
-                    cout<<"Invalid id\n";
+                    cout<<"Pokemon Center with ID: "<<id<<" is already in the game!\n";
                     return false;
                 }
             }
@@ -230,7 +230,7 @@ bool Model::checkID(char letterID, int id){
         case ('t'):
             for (Trainer* i: trainer_ptrs){
                 if (i->GetId() == id){
-                    cout<<"Invalid id\n";
+                    cout<<"Trainer with ID: "<<id<<" is already in the game!\n";
                     return false;
                 }
             }
@@ -240,7 +240,7 @@ bool Model::checkID(char letterID, int id){
         case ('g'):
             for (PokemonGym* i: gym_ptrs){
                 if (i->GetId() == id){
-                    cout<<"Invalid id\n";
+                    cout<<"Pokemon Gym with ID: "<<id<<" is already in the game!\n";
                     return false;
                 }
             }
@@ -250,7 +250,7 @@ bool Model::checkID(char letterID, int id){
         case ('w'):
             for (WildPokemon* i: pokemon_ptrs){
                 if (i->GetId() == id){
-                    cout<<"Invalid id\n";
+                    cout<<"Wild Pokemon with ID: "<<id<<" is already in the game!\n";
                     return false;
                 }
             }

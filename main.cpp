@@ -92,10 +92,16 @@ int main(){
                         for (int i=0;i<3;i++)
                             cin>>threeInputs[i];
                         main.NewCommand(letterInput1, threeInputs[0], threeInputs[1], threeInputs[2]);
+                        break;
+
+                    default:
+                        cout<<"Invalid Input - "<<letterInput<<endl;
+                        fflush(stdin);
+                        break;
                 }
             }
             catch (Invalid_Input& except){
-                cout<<"Invalid input - "<< except.msg_ptr<<endl;
+                //cout<<"Invalid input - "<< except.msg_ptr<<endl;
             }
 
             if(i==1){
