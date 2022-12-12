@@ -2,10 +2,10 @@ CC=g++ -std=c++11 -g
 
 OBJS=main.o Point2D.o Vector2D.o GameObject.o Building.o PokemonCenter.o PokemonGym.o Trainer.o Model.o GameCommand.o View.o WildPokemon.o
 
-default: PA3
+default: PA4
 
-PA3: $(OBJS)
-	$(CC) -o PA3 $(OBJS) 
+PA4: $(OBJS)
+	$(CC) -o PA4 $(OBJS) 
 
 Vector2D.o: Vector2D.cpp Vector2D.h
 	$(CC) -c Vector2D.cpp -o Vector2D.o 
@@ -47,4 +47,4 @@ main.o: main.cpp Building.h Point2D.h Vector2D.h GameCommand.h PokemonCenter.h M
 	$(CC) -c main.cpp -o main.o
 
 clean: 
-	rm $(OBJS) PA3 *.exe
+	rm $(OBJS) PA4 *.exe
