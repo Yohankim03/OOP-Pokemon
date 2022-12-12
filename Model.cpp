@@ -106,7 +106,7 @@ bool Model::Update(){
     //Loops through active pointers and deletes any innactive ones
     for (list<Trainer*>::iterator it = trainer_ptrs.begin(); it != trainer_ptrs.end(); it++) {
         if ((*it)->GetState() == FAINTED){
-            trainer_ptrs.erase(it);
+            active_ptrs.remove(*it);
             cout << "Dead object removed" << endl;
         }
     }

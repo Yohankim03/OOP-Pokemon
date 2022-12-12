@@ -39,14 +39,8 @@ void View::Plot(GameObject* ptr){
     if (GetSubscripts(x,y,loc)){
         ptr->DrawSelf(characters);
         if (grid[x][y][0]=='.'){
-            if(ptr->GetState()==FAINTED){
-                grid[x][y][0] = '.';
-                grid[x][y][1] = ' ';
-            }
-            else{
-                grid[x][y][0] = *characters;
-                grid[x][y][1] = *(characters+1);
-            }
+            grid[x][y][0] = *characters;
+            grid[x][y][1] = *(characters+1);
         }
         else{
             grid[x][y][0] = '*';
